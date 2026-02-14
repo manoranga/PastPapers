@@ -13,11 +13,11 @@
 1. Go to [dashboard.render.com](https://dashboard.render.com)
 2. Click your web service → **Settings** → **Build & Deploy**
 3. **Build Command:** `pip install -r requirements.txt`
-4. **Start Command:** `python -m gunicorn app:app --bind 0.0.0.0:$PORT`
+4. **Start Command:** `python run_server.py`
 5. **Save** → **Manual Deploy** → **Deploy latest commit**
 
 ---
 
-**Important:** Using `python -m gunicorn` avoids PATH issues on Render. Do NOT use:
+**Important:** Uses Waitress (pure Python) via `run_server.py`. Do NOT use:
 - `gunicorn>=21.0.0` (that's a package name for requirements.txt)
 - `start.sh` (no script – use the command directly)
