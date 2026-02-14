@@ -69,6 +69,19 @@ python scraper/ethaksalawa_scraper.py
 python scraper/ethaksalawa_scraper.py output/custom.json
 ```
 
+## Ads (Google AdSense)
+
+To enable ads, set these environment variables (e.g. in Render Dashboard → Environment):
+
+| Variable | Description |
+|----------|-------------|
+| `ADSENSE_CLIENT_ID` | Your AdSense publisher ID (e.g. `ca-pub-XXXXXXXXXXXXXXXX`) |
+| `ADSENSE_SLOT_BANNER` | Ad unit slot ID for the banner below hero |
+| `ADSENSE_SLOT_RECTANGLE` | Ad unit slot ID for the rectangle ad |
+| `ADSENSE_SLOT_MODAL` | Ad unit slot ID for the modal (shown on subject/paper click, max once per minute) |
+
+Create ad units in [Google AdSense](https://www.google.com/adsense) and use the slot IDs. Without slot IDs, AdSense may use auto-placement.
+
 ## Disclaimer
 
 This project is for educational use only. All content is sourced from e-thaksalawa. Copyrights remain with the original owners (Ministry of Education, Sri Lanka).

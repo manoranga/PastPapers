@@ -4,6 +4,7 @@ Flask backend serving scraped papers from e-thaksalawa
 """
 
 import json
+import os
 from pathlib import Path
 
 from flask import Flask, jsonify, render_template, send_from_directory
@@ -11,6 +12,10 @@ from flask import Flask, jsonify, render_template, send_from_directory
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
 DATA_FILE = Path(__file__).parent / "data" / "papers.json"
+ADSENSE_CLIENT = os.environ.get("ADSENSE_CLIENT_ID", "")
+ADSENSE_SLOT_BANNER = os.environ.get("ADSENSE_SLOT_BANNER", "")
+ADSENSE_SLOT_RECTANGLE = os.environ.get("ADSENSE_SLOT_RECTANGLE", "")
+ADSENSE_SLOT_MODAL = os.environ.get("ADSENSE_SLOT_MODAL", "")
 
 
 def load_papers():
@@ -24,7 +29,13 @@ def load_papers():
 @app.route("/")
 def index():
     """Home page."""
-    return render_template("index.html")
+    return render_template(
+        "index.html",
+        adsense_client=ADSENSE_CLIENT,
+        adsense_slot_banner=ADSENSE_SLOT_BANNER,
+        adsense_slot_rectangle=ADSENSE_SLOT_RECTANGLE,
+        adsense_slot_modal=ADSENSE_SLOT_MODAL,
+    )
 
 
 @app.route("/api/papers")
