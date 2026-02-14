@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Past Papers - G.C.E. O/L Sri Lanka | Free Exam Papers</title>
+  <meta name="description" content="Free G.C.E. O/L past papers for Sri Lankan students. Browse Mathematics, Science, English, History, ICT and more. Download exam papers and marking schemes.">
+  <meta name="keywords" content="GCE OL past papers, Sri Lanka exam papers, O/L past papers, e-thaksalawa, Mathematics past papers, Science past papers, Sri Lanka education">
+  <meta name="author" content="Past Papers">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{{ request.base_url }}">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Past Papers - G.C.E. O/L Sri Lanka">
+  <meta property="og:description" content="Free G.C.E. O/L past papers for Sri Lankan students. Browse by subject and year.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ request.base_url }}">
+  <meta property="og:locale" content="en_US">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Past Papers - G.C.E. O/L Sri Lanka">
+  <meta name="twitter:description" content="Free G.C.E. O/L past papers for Sri Lankan students. Browse by subject and year.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a href="/" class="logo">
+        <span class="logo-icon">📚</span>
+        <span>Past Papers</span>
+      </a>
+      <nav class="nav">
+        <a href="/#subjects">Subjects</a>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark/light mode">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero">
+      <div class="container">
+        <h1>G.C.E. O/L Past Papers</h1>
+        <p class="hero-subtitle">Free access to Sri Lankan examination papers from e-thaksalawa. Browse by subject and year.</p>
+        <div class="hero-stats">
+          <span id="subject-count">—</span> subjects
+          <span class="separator">•</span>
+          <span id="paper-count">—</span> papers
+        </div>
+      </div>
+    </section>
+
+    <section class="search-section">
+      <div class="container">
+        <div class="search-box">
+          <input type="text" id="search" placeholder="Search subjects or papers..." autocomplete="off">
+          <span class="search-icon">🔍</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="subjects" class="subjects-section">
+      <div class="container">
+        <h2>Browse by Subject</h2>
+        <div id="subjects-grid" class="subjects-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <section id="papers" class="papers-section">
+      <div class="container">
+        <div id="papers-header" class="papers-header" style="display: none;">
+          <h2 id="selected-subject">Mathematics</h2>
+          <button id="back-btn" class="back-btn">← Back to subjects</button>
+        </div>
+        <div id="papers-list" class="papers-list">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>Data sourced from <a href="https://e-thaksalawa.moe.gov.lk/lcms/course/view.php?id=872" target="_blank" rel="noopener">e-thaksalawa</a> – Ministry of Education, Sri Lanka.</p>
+      <p class="disclaimer">For educational use only. All copyrights remain with original owners.</p>
+    </div>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
