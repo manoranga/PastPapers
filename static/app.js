@@ -5,9 +5,6 @@
 let papersData = { subjects: [] };
 let currentSubjects = []; // Current view (filtered or full)
 
-const AD_INTERVAL_MS = 60 * 1000; // 1 minute between ads
-const AD_STORAGE_KEY = 'pastpapers_last_ad';
-
 // DOM Elements
 const subjectsGrid = document.getElementById('subjects-grid');
 const papersList = document.getElementById('papers-list');
@@ -53,21 +50,7 @@ function renderSubjects(subjects) {
 
   subjectsGrid.querySelectorAll('.subject-card').forEach(card => {
     card.addEventListener('click', () => {
-      const subjectKey = card.dataset.subject;
-      showAdModal(() => showSubject(subjectKey));
-    });
-  });
-}
-
-// Paper link click: show ad modal (if 1 min passed) then open link
-function initPaperLinks() {
-  papersList.addEventListener('click', (e) => {
-    const link = e.target.closest('.paper-link');
-    if (!link) return;
-    e.preventDefault();
-    const url = link.href || link.dataset.paperUrl;
-    showAdModal(() => {
-      if (url) window.open(url, '_blank', 'noopener');
+      showSubject(card.dataset.subject);
     });
   });
 }
@@ -107,49 +90,6 @@ function showSubject(subjectKey) {
   });
 
   document.getElementById('papers').scrollIntoView({ behavior: 'smooth' });
-}
-
-// Ad modal: show only if 1 min passed since last ad
-function shouldShowAd() {
-  try {
-    const last = sessionStorage.getItem(AD_STORAGE_KEY);
-    if (!last) return true;
-    return Date.now() - parseInt(last, 10) >= AD_INTERVAL_MS;
-  } catch {
-    return true;
-  }
-}
-
-function markAdShown() {
-  try {
-    sessionStorage.setItem(AD_STORAGE_KEY, String(Date.now()));
-  } catch {}
-}
-
-function showAdModal(onClose) {
-  const modal = document.getElementById('ad-modal');
-  const config = window.ADSENSE_CONFIG || {};
-  const hasAdConfig = config.client && config.slotModal;
-  if (!hasAdConfig || !shouldShowAd()) {
-    if (onClose) onClose();
-    return;
-  }
-  modal.classList.remove('hidden');
-  modal.setAttribute('aria-hidden', 'false');
-  markAdShown();
-  requestAnimationFrame(() => {
-    if (window.adsbygoogle) {
-      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch {}
-    }
-  });
-  const closeModal = () => {
-    modal.classList.add('hidden');
-    modal.setAttribute('aria-hidden', 'true');
-    if (onClose) onClose();
-  };
-  modal.querySelector('.ad-modal-close').onclick = closeModal;
-  modal.querySelector('.ad-modal-backdrop').onclick = closeModal;
-  modal._closeCallback = closeModal;
 }
 
 function filterSubjects(query) {
@@ -237,7 +177,6 @@ searchInput.addEventListener('keydown', (e) => {
 // Check URL hash for direct subject link (after data loads)
 window.addEventListener('load', async () => {
   await loadData();
-  initPaperLinks();
   const hash = window.location.hash.slice(1);
   if (hash) {
     const subject = papersData.subjects.find(s =>

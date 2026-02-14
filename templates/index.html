@@ -19,15 +19,12 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Past Papers - G.C.E. O/L Sri Lanka">
   <meta name="twitter:description" content="Free G.C.E. O/L past papers for Sri Lankan students. Browse by subject and year.">
-    <meta name="google-adsense-account" content="ca-pub-4774676485756934">
+  <meta name="google-adsense-account" content="ca-pub-4774676485756934">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/style.css">
-  {% if adsense_client %}
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4774676485756934"
-     crossorigin="anonymous"></script>
-  {% endif %}
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4774676485756934" crossorigin="anonymous"></script>
 </head>
 <body>
   <header class="header">
@@ -65,19 +62,6 @@
       </div>
     </section>
 
-    <section class="ad-section">
-      <div class="container">
-        <div class="ad-slot ad-banner">
-          {% if adsense_client and adsense_slot_banner %}
-          <ins class="adsbygoogle" style="display:block" data-ad-client="{{ adsense_client }}" data-ad-slot="{{ adsense_slot_banner }}" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-          {% else %}
-          <div class="ad-placeholder">{% if adsense_client %}Add ADSENSE_SLOT_BANNER env var{% else %}Set ADSENSE_CLIENT_ID & ADSENSE_SLOT_BANNER for ads{% endif %}</div>
-          {% endif %}
-        </div>
-      </div>
-    </section>
-
     <section id="subjects" class="subjects-section">
       <div class="container">
         <h2>Browse by Subject</h2>
@@ -98,19 +82,6 @@
         </div>
       </div>
     </section>
-
-    <section class="ad-section">
-      <div class="container">
-        <div class="ad-slot ad-rectangle">
-          {% if adsense_client and adsense_slot_rectangle %}
-          <ins class="adsbygoogle" style="display:block" data-ad-client="{{ adsense_client }}" data-ad-slot="{{ adsense_slot_rectangle }}" data-ad-format="rectangle" data-full-width-responsive="true"></ins>
-          <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-          {% else %}
-          <div class="ad-placeholder">{% if adsense_client %}Add ADSENSE_SLOT_RECTANGLE{% else %}Ad slot{% endif %}</div>
-          {% endif %}
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="footer">
@@ -120,27 +91,6 @@
     </div>
   </footer>
 
-  <!-- Ad modal (shown on subject/paper click, max once per minute) -->
-  <div id="ad-modal" class="ad-modal hidden" aria-hidden="true">
-    <div class="ad-modal-backdrop"></div>
-    <div class="ad-modal-content">
-      <button class="ad-modal-close" aria-label="Close">×</button>
-      <div id="ad-modal-slot" class="ad-modal-slot">
-        {% if adsense_client and adsense_slot_modal %}
-        <ins class="adsbygoogle ad-modal-ins" style="display:block" data-ad-client="{{ adsense_client }}" data-ad-slot="{{ adsense_slot_modal }}" data-ad-format="rectangle" data-full-width-responsive="true"></ins>
-        {% else %}
-        <div class="ad-placeholder">Ad (set ADSENSE_SLOT_MODAL)</div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-
-  <script>
-    window.ADSENSE_CONFIG = {
-      client: "{{ adsense_client }}",
-      slotModal: "{{ adsense_slot_modal }}"
-    };
-  </script>
   <script src="/static/app.js"></script>
 </body>
 </html>
